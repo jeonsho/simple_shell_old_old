@@ -11,10 +11,12 @@ void execute_command(char **argv, char *actual_command, char *executable)
 	{*/
 	char *eror_msg;
 	 char *newline = "\n";
+	  char *sep = ": ";
 		if (execve(actual_command, argv, environ) == -1)
 		{
 			eror_msg ="No such file or directory";
 			write(STDERR_FILENO, executable, _strlen(executable));
+			write(STDERR_FILENO, sep, _strlen(sep));
 			write(STDERR_FILENO, eror_msg, _strlen(eror_msg));
 			write(STDERR_FILENO, newline, _strlen(newline));
 			free(actual_command);
