@@ -1,6 +1,6 @@
 #include "main.h"
 #define EXIT_COMMAND "exit"
-#define ENV_COMMAND "/bin/envi"
+#define ENV_COMMAND "/bin/env"
 
 /**
  *construct_file_path - Constructs the absolute file path
@@ -39,7 +39,7 @@ char *get_location(char *command)
 	path = _getenv("PATH");
 	if (_strcmp(command, EXIT_COMMAND) == 0)
 		return (_strdup(EXIT_COMMAND));
-	if (_strcmp(command, ENV_COMMAND) == 0)
+	if (_strcmp(command, "env") == 0)
 		return (_strdup(ENV_COMMAND));
 	if (path && _strlen(path) > 0)
 	{

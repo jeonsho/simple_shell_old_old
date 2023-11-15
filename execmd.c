@@ -6,16 +6,16 @@
  */
 void execute_command(char **argv, char *actual_command)
 {
-	extern char **environ;
-/*	if (_strcmp(actual_command, "/bin/env") != 0)
-	{*/
+	/*extern char **environ;*/
+	if (_strcmp(actual_command, "/bin/env") != 0)
+	{
 		if (execve(actual_command, argv, environ) == -1)
 		{
 			free(actual_command);
 			cleanup_memory(NULL, NULL, argv);
 			exit(127);
 		}
-	/*}
+	}
 	else
 	{
 		int i;
@@ -27,7 +27,7 @@ void execute_command(char **argv, char *actual_command)
 		free(actual_command);
 		cleanup_memory(NULL, NULL, argv);
 		exit(0);
-	}*/
+	}
 }
 
 /**
@@ -59,7 +59,7 @@ int execmd(char **argv, char *executable, int indecs)
 	{
 		command = argv[0];
 		actual_command = get_location(command);
-		if (actual_command != NULL && _strcmp(actual_command, "exit") != 0)
+		if (actual_command != NULL && (_strcmp(actual_command, "exit") != 0  || _strcmp(actual_command, "/bin/env") == 0))
 		{
 			pid_t pid = fork();
 
