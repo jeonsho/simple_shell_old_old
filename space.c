@@ -52,7 +52,7 @@ void trimString(char *str)
 	}
 	else
 	{
-		end = str + strlen(str) - 1;
+		end = str + _strlen(str) - 1;
 
 		while (end > str && *end == ' ')
 		{
