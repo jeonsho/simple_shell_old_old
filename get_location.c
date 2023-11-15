@@ -46,7 +46,7 @@ char *get_location(char *command)
 		path_copy = _strdup(path);
 		if (path_copy == NULL)
 			return (NULL);
-		path_token = strtok(path_copy, ":");
+		path_token = my_strtok(path_copy, ":");
 		while (path_token != NULL)
 		{
 			file_path = construct_file_path(path_token, command);
@@ -63,7 +63,7 @@ char *get_location(char *command)
 			else
 			{
 				free(file_path);
-				path_token = strtok(NULL, ":");
+				path_token = my_strtok(NULL, ":");
 			}
 		}
 		free(path_copy);
