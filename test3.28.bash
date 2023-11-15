@@ -1,8 +1,8 @@
-!/bin/bash
+#!/bin/bash
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Execute `/bin/ls`
+# Remove PATH variable and set a `PATH1` variable, and execute `ls`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="/bin/ls"
+shell_input="hbtn_ls"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
@@ -41,6 +41,11 @@ shell_input="/bin/ls"
 # Return value: Discarded
 function check_setup()
 {
+	cp "/bin/ls" "$PWD/hbtn_ls"
+	export PATH1="$PWD"
+	OLDPATH="$PATH"
+	unset PATH
+
 	return 0
 }
 
@@ -81,6 +86,9 @@ function sh_setup()
 function check_callback()
 {
 	status=$1
+
+	export PATH="$OLDPATH"
+	$RM -f "$PWD/hbtn_ls"
 
 	return $status
 }

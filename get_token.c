@@ -17,11 +17,11 @@ char **my_tokenize_input(char *lineptr, char *lineptr_copy)
 	int i = 0;
 	char **argv = NULL;
 
-	token = my_strtok(lineptr_copy, delim);
+	token = strtok(lineptr_copy, delim);
 	while (token != NULL)
 	{
 		num_tokens++;
-		token = my_strtok(NULL, delim);
+		token = strtok(NULL, delim);
 	}
 
 	num_tokens++;
@@ -31,13 +31,13 @@ char **my_tokenize_input(char *lineptr, char *lineptr_copy)
 		return (NULL);
 	}
 
-	token = my_strtok(lineptr, delim);
+	token = strtok(lineptr, delim);
 
 	for (i = 0; token != NULL; i++)
 	{
 		argv[i] = (char *) malloc(sizeof(char) * (_strlen(token) + 1));
 		_strcpy(argv[i], token);
-		token =my_strtok(NULL, delim);
+		token =strtok(NULL, delim);
 	}
 
 	argv[i] = NULL;

@@ -1,8 +1,8 @@
-!/bin/bash
+#!/bin/bash
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Execute `/bin/ls`
+# Remove the `$PATH` environment variable and execute `/bin/ls`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -41,6 +41,9 @@ shell_input="/bin/ls"
 # Return value: Discarded
 function check_setup()
 {
+	OLDPATH="$PATH"
+	unset PATH
+
 	return 0
 }
 
@@ -81,6 +84,8 @@ function sh_setup()
 function check_callback()
 {
 	status=$1
+
+	export PATH="$OLDPATH"
 
 	return $status
 }

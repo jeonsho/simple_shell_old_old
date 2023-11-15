@@ -1,8 +1,8 @@
-!/bin/bash
+#!/bin/bash
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Execute `/bin/ls`
+# Set PATH to be an empty string and execute a command that does not exist
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="/bin/ls"
+shell_input="hbtn_cmd"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
@@ -41,6 +41,9 @@ shell_input="/bin/ls"
 # Return value: Discarded
 function check_setup()
 {
+	OLDPATH="$PATH"
+	export PATH=""
+
 	return 0
 }
 
@@ -81,6 +84,8 @@ function sh_setup()
 function check_callback()
 {
 	status=$1
+
+	export PATH="$OLDPATH"
 
 	return $status
 }

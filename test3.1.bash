@@ -1,8 +1,8 @@
-!/bin/bash
+#!/bin/bash
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Execute `/bin/ls`
+# Execute `ls`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="/bin/ls"
+shell_input="ls"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL

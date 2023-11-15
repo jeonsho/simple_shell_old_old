@@ -10,21 +10,23 @@ int main(int ac, char **arg)
 	char *executable = arg[0];
 	char *lineptr = NULL, *lineptr_copy = NULL, **argv;
 	size_t n = 0, indecs = 0, status = 0;
-	ssize_t nchars_read;
 
 	(void) ac;
 	signal(SIGINT, handler);
-	   if (isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO))
                         write(STDOUT_FILENO, "& ", 2);
 	while (1)
 	{
-		lineptr = NULL, lineptr_copy = NULL,   argv = NULL, nchars_read = 0;
-		/*if (isatty(STDIN_FILENO))
+		ssize_t nchars_read ;
+		lineptr = NULL, lineptr_copy = NULL,   argv = NULL, n =0;
+	/*	if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "& ", 2);*/
-		nchars_read = getline(&lineptr, &n,stdin);
-		       /*	my_getline(&lineptr, &n, STDIN_FILENO);*/
+		nchars_read = getline(&lineptr, &n, stdin);
 		if (nchars_read == -1)
+		{
+			 cleanup_memory(lineptr, lineptr_copy, argv);
 			exit(0);
+		}
 		lineptr_copy = malloc((nchars_read + 1) * sizeof(char));
 		if (lineptr_copy == NULL)
 		{
@@ -41,13 +43,15 @@ int main(int ac, char **arg)
 				 status = execmd(argv, executable, indecs);
 				if (status != 0)
 				{
-				/*	exit(errno); */}
+				 cleanup_memory(NULL, NULL, argv);
+					exit(0);
+				}
 			}
 		}
 		else
 			cleanup_memory(lineptr, lineptr_copy, argv);
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "& ", 1); }
+			write(STDOUT_FILENO, "& ", 2); }
 	cleanup_memory(lineptr, lineptr_copy, argv);
 	return (0); }
 
@@ -116,48 +120,4 @@ void print_command_not_found_error(char *executable, char *command, int indecs)
 	write(STDERR_FILENO, separator, _strlen(separator));
 	write(STDERR_FILENO, error_msg, _strlen(error_msg));
 	write(STDERR_FILENO, newline, _strlen(newline));
-}
-/**
- * rev_str - reverse string
- * @str: string to be reverted
- * @len: string length
- */
-void rev_str(char *str, int len)
-{
-	int begin = 0, end = len - 1;
-	char copy;
-
-	while (begin < end)
-	{
-		copy = str[begin];
-		str[begin] = str[end];
-		str[end] = copy;
-		begin++;
-		end--;
-	}
-}
-/**
- * _itoa - change the int to char
- * @n:the int number
- * Return: the char
- */
-char *_itoa(int n)
-{
-	char buff[25];
-	int i = 0;
-
-	if (n == 0)
-		buff[i++] = '0';
-	else
-	{
-		while (n > 0)
-		{
-			buff[i++] = (n % 10) + '0';
-			n /= 10;
-		}
-	}
-	buff[i] = '\0';
-	rev_str(buff, i);
-
-	return (_strdup(buff));
 }
