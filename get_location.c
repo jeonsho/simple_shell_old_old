@@ -10,12 +10,11 @@
  */
 char *construct_file_path(char *directory, char *command)
 {
-	size_t len = _strlen(directory) + 1 + _strlen(command) + 1;
-	char *file_path = malloc(len);
+	size_t len ;
+	char *file_path;
 
-	file_path = malloc(len);
 	 len = _strlen(directory) + 1 + _strlen(command) + 1;
-
+	 file_path = malloc(len);
 	if (file_path == NULL)
 		return (NULL);
 	_strncpy(file_path, directory, len);
