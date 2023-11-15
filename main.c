@@ -14,13 +14,13 @@ int main(int ac, char **arg)
 
 	(void) ac;
 	signal(SIGINT, handler);
-	if (isatty(STDIN_FILENO))
-                        write(STDOUT_FILENO, "& ", 2);
+	/*if (isatty(STDIN_FILENO))
+                        write(STDOUT_FILENO, "& ", 2);*/
 	while (1)
 	{
 		lineptr = NULL, lineptr_copy = NULL,   argv = NULL,nchars_read = 0;
-	/*	if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "& ", 2);*/
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "& ", 2);
 		nchars_read = getline(&lineptr, &n, stdin);
 		if (nchars_read == -1)
 		{
@@ -50,8 +50,9 @@ int main(int ac, char **arg)
 		}
 		else
 			cleanup_memory(lineptr, lineptr_copy, argv);
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "& ", 2); }
+	/*	if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "& ", 2);*/
+       	}
 	cleanup_memory(lineptr, lineptr_copy, argv);
 	return (0); }
 
