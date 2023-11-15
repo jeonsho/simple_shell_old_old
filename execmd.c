@@ -7,22 +7,22 @@
  */
 void execute_command(char **argv, char *actual_command)
 {
-	if (_strcmp(actual_command, "/bin/env") != 0)
-	{
+/*	if (_strcmp(actual_command, "/bin/env") != 0)
+	{*/
 		if (execve(actual_command, argv, environ) == -1)
 		{
 			free(actual_command);
 			cleanup_memory(NULL, NULL, argv);
 			exit(errno);
 		}
-	}
+	/*}
 	else
 	{
 		builtin_env();
 		free(actual_command);
 		cleanup_memory(NULL, NULL, argv);
 		exit(0);
-	}
+	}*/
 }
 
 /**
