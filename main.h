@@ -15,18 +15,6 @@
 
 extern char **environ;
 
-/*
- *Datashell - A structure to hold data
- *_environ: A pointer to a pointer to char
- *status: An integer representing the status
- *
-typedef struct
-{
-	char **_environ;
-	 int status;
-} DataShelli;
-*/
-
 void handler(int signum);
 int _strlen(char *s);
 int _isspace(char c);
