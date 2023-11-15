@@ -72,10 +72,11 @@ int execmd(char **argv, char *executable, int indecs)
 				execute_command(argv, actual_command);
 			else
 			{
-				if (waitpid(pid, &status, 0) == -1)
-				{
+			/*	if (waitpid(pid, &status, 0) == -1)
+				{*/
 					cleanup_resources(actual_command, NULL, argv);
-					exit(1); }
+					exit(1);
+		       /*	}*/
 			}
 		}
 		else if (actual_command != NULL && _strcmp(actual_command, "exit") == 0)
