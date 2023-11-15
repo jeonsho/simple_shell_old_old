@@ -105,12 +105,12 @@ void print_command_not_found_error(char *executable, char *command, int indecs)
 	char *error_msg = "not found";
 	char *separator = ": ";
 	char *newline = "\n";
-	char *index = _itoa(indecs);
-	  
+/*	char *index = _itoa(indecs);
+*/	  
 
 	write(STDERR_FILENO, executable, _strlen(executable));
 	write(STDERR_FILENO, separator, _strlen(separator));
-	write(STDERR_FILENO, index, _strlen(index));
+	write(STDERR_FILENO, "1", indecs );
 	write(STDERR_FILENO, separator, _strlen(separator));
 	write(STDERR_FILENO, command, _strlen(command));
 	write(STDERR_FILENO, separator, _strlen(separator));
