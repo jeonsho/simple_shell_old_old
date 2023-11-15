@@ -37,7 +37,7 @@ char **my_tokenize_input(char *lineptr, char *lineptr_copy)
 	{
 		argv[i] = (char *) malloc(sizeof(char) * (_strlen(token) + 1));
 		_strcpy(argv[i], token);
-		token =my_strtok(NULL, delim);
+		token = my_strtok(NULL, delim);
 	}
 
 	argv[i] = NULL;

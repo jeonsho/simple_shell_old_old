@@ -6,7 +6,6 @@
  */
 void execute_command(char **argv, char *actual_command)
 {
-	/*extern char **environ;*/
 	if (_strcmp(actual_command, "/bin/env") != 0)
 	{
 		if (execve(actual_command, argv, environ) == -1)
@@ -19,7 +18,8 @@ void execute_command(char **argv, char *actual_command)
 	else
 	{
 		int i;
-		for(i=0; environ[i]; i++)
+
+		for (i = 0; environ[i]; i++)
 		{
 			write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
 			write(STDOUT_FILENO, "\n", 1);
@@ -59,7 +59,8 @@ int execmd(char **argv, char *executable, int indecs)
 	{
 		command = argv[0];
 		actual_command = get_location(command);
-		if (actual_command != NULL && (_strcmp(actual_command, "exit") != 0  || _strcmp(actual_command, "/bin/env") == 0))
+		if (actual_command != NULL && (_strcmp(actual_command, "exit") != 0
+					|| _strcmp(actual_command, "/bin/env") == 0))
 		{
 			pid_t pid = fork();
 
@@ -76,20 +77,18 @@ int execmd(char **argv, char *executable, int indecs)
 				{
 					cleanup_resources(actual_command, NULL, argv);
 					exit(1);
-		       	}
+				}
 			}
 		}
 		else if (actual_command != NULL && _strcmp(actual_command, "exit") == 0)
 		{
 			cleanup_resources(actual_command, NULL, argv);
-			exit(0);
-		}
+			exit(0); }
 		else
-		{	
+		{
 			print_command_not_found_error(executable, command, indecs);
 			cleanup_resources(actual_command, NULL, argv);
-			exit(127);
-		}
+			exit(127); }
 	}
 	cleanup_resources(actual_command, NULL, argv);
 	return (status);

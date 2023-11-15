@@ -10,7 +10,7 @@
  */
 char *construct_file_path(char *directory, char *command)
 {
-	size_t len ;
+	size_t len;
 	char *file_path;
 
 	 len = _strlen(directory) + 1 + _strlen(command) + 1;

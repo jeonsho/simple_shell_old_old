@@ -27,7 +27,7 @@ int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
 char *_strncpy(char *dest, char *src, int n);
 char *_strncat(char *dest, char *src, int n);
-/*void _env(DataShell *datash);*/
+void rev_str(char *str, int len);
 int builtin_env(void);
 void print_command_not_found_error(char *executable,
 	char *command, int indecs);

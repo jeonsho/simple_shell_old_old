@@ -13,6 +13,7 @@ char *_getenv(char *v)
 	while (*env)
 	{
 		size_t i;
+
 		for (i = 0; i < len; ++i)
 		{
 			if ((*env)[i] != v[i])

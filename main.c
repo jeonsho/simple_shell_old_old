@@ -1,24 +1,5 @@
 #include "main.h"
 /**
- * rev_str - reverse string
- * @str: string to be reverted
- * @len: string length
- */
-void rev_str(char *str, int len)
-{
-	int begin = 0, end = len - 1;
-	char copy;
-
-	while (begin < end)
-	{
-		copy = str[begin];
-		str[begin] = str[end];
-		str[end] = copy;
-		begin++;
-		end--;
-	}
-}
-/**
  * _itoa - change the int to char
  * @n:the int number
  * Return: the char
@@ -59,11 +40,9 @@ int main(int ac, char **arg)
 
 	(void) ac;
 	signal(SIGINT, handler);
-	/*if (isatty(STDIN_FILENO))
-                        write(STDOUT_FILENO, "& ", 2);*/
 	while (1)
 	{
-		lineptr = NULL, lineptr_copy = NULL,   argv = NULL,nchars_read = 0;
+		lineptr = NULL, lineptr_copy = NULL, argv = NULL, nchars_read = 0;
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "& ", 2);
 		nchars_read = my_getline(&lineptr, &n, STDIN_FILENO);
@@ -87,17 +66,12 @@ int main(int ac, char **arg)
 				cleanup_memory(lineptr, lineptr_copy, NULL);
 				 status = execmd(argv, executable, indecs);
 				if (status != 0)
-				{
-				 /*cleanup_memory(NULL, NULL, argv);*/
 					exit(errno);
-				}
 			}
 		}
 		else
 			cleanup_memory(lineptr, lineptr_copy, argv);
-	/*	if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "& ", 2);*/
-       	}
+	}
 	cleanup_memory(lineptr, lineptr_copy, argv);
 	return (0); }
 

@@ -81,3 +81,22 @@ char *_strchr(char *s, char c)
 		return (s);
 	return ('\0');
 }
+/**
+ *rev_str - reverse string
+ *@str: string
+ *@len: length
+ */
+void rev_str(char *str, int len)
+{
+	int b = 0, e = len - 1;
+	char copy;
+
+	while (b < e)
+	{
+		copy = str[b];
+		str[b] = str[e];
+		str[e] = copy;
+		b++;
+		e--;
+	}
+}
