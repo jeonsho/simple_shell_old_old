@@ -16,6 +16,7 @@
 extern char **environ;
 char *_getenv(char *v);
 void handler(int signum);
+char *_itoa(int n);
 int _strlen(char *s);
 int _isspace(char c);
 bool is_empty(const char *str);

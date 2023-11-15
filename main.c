@@ -41,7 +41,7 @@ int main(int ac, char **arg)
 				 status = execmd(argv, executable, indecs);
 				if (status != 0)
 				{
-					/*exit(errno);*/ }
+					exit(errno); }
 			}
 		}
 		else
@@ -105,19 +105,59 @@ void print_command_not_found_error(char *executable, char *command, int indecs)
 	char *error_msg = "not found";
 	char *separator = ": ";
 	char *newline = "\n";
-
-	/*
-	 * char *index = NULL;
-
-	    index =_atoi(char s8)
-	    */
+	char *index = _itoa(indecs);
+	  
 
 	write(STDERR_FILENO, executable, _strlen(executable));
 	write(STDERR_FILENO, separator, _strlen(separator));
-	write(STDERR_FILENO, "1", indecs);
+	write(STDERR_FILENO, index, _strlen(index));
 	write(STDERR_FILENO, separator, _strlen(separator));
 	write(STDERR_FILENO, command, _strlen(command));
 	write(STDERR_FILENO, separator, _strlen(separator));
 	write(STDERR_FILENO, error_msg, _strlen(error_msg));
 	write(STDERR_FILENO, newline, _strlen(newline));
+}
+/**
+ * rev_str - reverse string
+ * @str: string to be reverted
+ * @len: string length
+ */
+void rev_str(char *str, int len)
+{
+	int begin = 0, end = len - 1;
+	char copy;
+
+	while (begin < end)
+	{
+		copy = str[begin];
+		str[begin] = str[end];
+		str[end] = copy;
+		begin++;
+		end--;
+	}
+}
+/**
+ * _itoa - change the int to char
+ * @n:the int number
+ * Return: the char
+ */
+char *_itoa(int n)
+{
+	char buff[25];
+	int i = 0;
+
+	if (n == 0)
+		buff[i++] = '0';
+	else
+	{
+		while (n > 0)
+		{
+			buff[i++] = (n % 10) + '0';
+			n /= 10;
+		}
+	}
+	buff[i] = '\0';
+	rev_str(buff, i);
+
+	return (_strdup(buff));
 }

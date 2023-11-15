@@ -18,7 +18,12 @@ void execute_command(char **argv, char *actual_command)
 	}
 	else
 	{
-		builtin_env();
+		int i;
+		for(i=0; environ[i]; i++)
+		{
+			write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+			write(STDOUT_FILENO, "\n", 1);
+		}
 		free(actual_command);
 		cleanup_memory(NULL, NULL, argv);
 		exit(0);
