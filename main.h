@@ -30,7 +30,7 @@ char *_strncat(char *dest, char *src, int n);
 int builtin_env(void);
 void print_command_not_found_error(char *executable,
 	char *command, int indecs);
-void execute_command(char **argv, char *actual_command);
+void execute_command(char **argv, char *actual_command, char *executable);
 void cleanup_resources(char *actual_command, char *path_copy, char **argv);
 int execmd(char **argv, char *executable, int indecs);
 char *construct_file_path(char *directory, char *command);
