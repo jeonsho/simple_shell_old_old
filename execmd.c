@@ -80,9 +80,10 @@ int execmd(char **argv, char *executable, int indecs)
 		}
 		else
 		{
+			status = 0;
 			print_command_not_found_error(executable, command, indecs);
-			cleanup_resources(actual_command, NULL, argv);
-			exit(127);
+	/*		cleanup_resources(actual_command, NULL, argv);*/
+			/*exit(0);*/
 		}
 	}
 	cleanup_resources(actual_command, NULL, argv);
