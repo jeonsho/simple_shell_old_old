@@ -14,7 +14,7 @@
 #include <stddef.h>
 
 extern char **environ;
-
+char *_getenv(char *v);
 void handler(int signum);
 int _strlen(char *s);
 int _isspace(char c);

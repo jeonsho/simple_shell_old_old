@@ -10,7 +10,7 @@
  */
 char *construct_file_path(char *directory, char *command)
 {
-	size_t len = strlen(directory) + 1 + strlen(command) + 1;
+	size_t len = _strlen(directory) + 1 + _strlen(command) + 1;
 	char *file_path = malloc(len);
 
 	if (file_path == NULL)
@@ -34,7 +34,7 @@ char *get_location(char *command)
 
 	if (command == NULL)
 		return (NULL);
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	if (_strcmp(command, EXIT_COMMAND) == 0)
 		return (_strdup(EXIT_COMMAND));
 	if (_strcmp(command, ENV_COMMAND) == 0)
