@@ -40,9 +40,9 @@ int main(int ac, char **arg)
 			{
 				cleanup_memory(lineptr, lineptr_copy, NULL);
 				 status = execmd(argv, executable, indecs);
-				if (status != 0)
+		/*		if (status != 0)
 				{
-					exit(errno); }
+					exit(errno); }*/
 			}
 		}
 		else
