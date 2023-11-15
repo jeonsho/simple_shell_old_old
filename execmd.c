@@ -82,7 +82,7 @@ int execmd(char **argv, char *executable, int indecs)
 		else if (actual_command != NULL && _strcmp(actual_command, "exit") == 0)
 		{
 			cleanup_resources(actual_command, NULL, argv);
-			exit(0);
+			exit(errno);
 		}
 		else
 		{	
