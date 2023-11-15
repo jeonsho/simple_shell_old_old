@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  *execute_command - Execute a command with arguments.
  *@argv: Array of arguments including the command.
@@ -21,7 +20,7 @@ void execute_command(char **argv, char *actual_command, char *executable)
 			write(STDERR_FILENO, newline, _strlen(newline));
 			free(actual_command);
 			cleanup_memory(NULL, NULL, argv);
-			exit(errno);
+			exit(127);
 		}
 	/*}
 	else
