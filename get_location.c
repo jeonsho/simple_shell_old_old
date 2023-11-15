@@ -1,6 +1,6 @@
 #include "main.h"
 #define EXIT_COMMAND "exit"
-#define ENV_COMMAND "/bin/env"
+#define ENV_COMMAND "/bin/envi"
 
 /**
  *construct_file_path - Constructs the absolute file path
@@ -12,6 +12,9 @@ char *construct_file_path(char *directory, char *command)
 {
 	size_t len = _strlen(directory) + 1 + _strlen(command) + 1;
 	char *file_path = malloc(len);
+
+	file_path = malloc(len);
+	 len = _strlen(directory) + 1 + _strlen(command) + 1;
 
 	if (file_path == NULL)
 		return (NULL);
