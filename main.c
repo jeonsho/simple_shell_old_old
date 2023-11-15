@@ -1,5 +1,4 @@
 #include "main.h"
-#define PROMPT "& "
 /**
  *main - Simple shell program that reads commands,tokenizes them,and execute
  *@ac: The number of command line arguments.
@@ -48,7 +47,7 @@ int main(int ac, char **arg)
 		else
 			cleanup_memory(lineptr, lineptr_copy, argv);
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, PROMPT, sizeof(PROMPT) - 1); }
+			write(STDOUT_FILENO, "& ", 1); }
 	cleanup_memory(lineptr, lineptr_copy, argv);
 	return (0); }
 
