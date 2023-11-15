@@ -24,7 +24,7 @@ int main(int ac, char **arg)
 		nchars_read = getline(&lineptr, &n, stdin);
 		if (nchars_read == -1)
 		{
-			 cleanup_memory(lineptr, lineptr_copy, argv);
+			 /*cleanup_memory(lineptr, lineptr_copy, argv);*/
 			exit(0);
 		}
 		lineptr_copy = malloc((nchars_read + 1) * sizeof(char));
