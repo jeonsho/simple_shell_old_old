@@ -34,8 +34,6 @@ char *get_location(char *command)
 
 	if (command == NULL)
 		return (NULL);
-	else
-		return (_strdup(command));
 	path = _getenv("PATH");
 	if (_strcmp(command, EXIT_COMMAND) == 0)
 		return (_strdup(EXIT_COMMAND));

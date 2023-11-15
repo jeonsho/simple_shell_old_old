@@ -4,20 +4,12 @@
  *@argv: Array of arguments including the command.
  *@actual_command: The resolved absolute path of the command.
  */
-void execute_command(char **argv, char *actual_command, char *executable)
+void execute_command(char **argv, char *actual_command)
 {
 /*	if (_strcmp(actual_command, "/bin/env") != 0)
 	{*/
-	char *eror_msg;
-	 char *newline = "\n";
-	  char *sep = ": ";
 		if (execve(actual_command, argv, environ) == -1)
 		{
-			eror_msg ="No such file or directory";
-			write(STDERR_FILENO, executable, _strlen(executable));
-			write(STDERR_FILENO, sep, _strlen(sep));
-			write(STDERR_FILENO, eror_msg, _strlen(eror_msg));
-			write(STDERR_FILENO, newline, _strlen(newline));
 			free(actual_command);
 			cleanup_memory(NULL, NULL, argv);
 			exit(127);
@@ -71,7 +63,7 @@ int execmd(char **argv, char *executable, int indecs)
 				exit(1);
 			}
 			else if (pid == 0)
-				execute_command(argv, actual_command, executable);
+				execute_command(argv, actual_command);
 			else
 			{
 				if (waitpid(pid, &status, 0) == -1)
