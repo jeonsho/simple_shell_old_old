@@ -41,7 +41,7 @@ int main(int ac, char **arg)
 				 status = execmd(argv, executable, indecs);
 				if (status != 0)
 				{
-					exit(errno); }
+				/*	exit(errno); */}
 			}
 		}
 		else
