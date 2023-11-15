@@ -10,6 +10,7 @@ int main(int ac, char **arg)
 	char *executable = arg[0];
 	char *lineptr = NULL, *lineptr_copy = NULL, **argv;
 	size_t n = 0, indecs = 0, status = 0;
+	ssize_t nchars_read;
 
 	(void) ac;
 	signal(SIGINT, handler);
@@ -17,14 +18,13 @@ int main(int ac, char **arg)
                         write(STDOUT_FILENO, "& ", 2);
 	while (1)
 	{
-		ssize_t nchars_read ;
-		lineptr = NULL, lineptr_copy = NULL,   argv = NULL, n =0;
+		lineptr = NULL, lineptr_copy = NULL,   argv = NULL,nchars_read = 0;
 	/*	if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "& ", 2);*/
 		nchars_read = getline(&lineptr, &n, stdin);
 		if (nchars_read == -1)
 		{
-			 /*cleanup_memory(lineptr, lineptr_copy, argv);*/
+			cleanup_memory(lineptr, lineptr_copy, argv);
 			exit(0);
 		}
 		lineptr_copy = malloc((nchars_read + 1) * sizeof(char));
